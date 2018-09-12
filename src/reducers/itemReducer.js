@@ -1,4 +1,4 @@
-import { LOAD_ITEM } from '../constants';
+import { LOAD_ITEM, ADD_ITEM } from '../constants';
 
 let initialState = {
   products: [
@@ -10,12 +10,22 @@ let initialState = {
 };
 
 export default (state = initialState, action) => {
+
+  let updated = Object.assign({}, state);
+
   switch (action.type) {
     case LOAD_ITEM:
-      return state;
+      return updated;
+
+    case ADD_ITEM:
+
+      let products = Object.assign([], updated.products);    
+      products.push(action.data);
+      updated['products'] = products;
+      return updated;
 
     default:
 
-      return state;
+      return updated;
   }
 };

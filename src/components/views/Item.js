@@ -4,7 +4,9 @@ const Item = (props) => {
   return (
     <div>
       <span>Title: {props.item.name}</span>
+      <br />
       <span>$ {props.item.price}</span>
+      <br />
     </div>
   );
 };
