@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Item from '../views/Item';
-import { addItem } from '../../actions';
+import { addItem, deleteItem } from '../../actions';
 
 
 class Home extends Component {
@@ -22,7 +22,7 @@ class Home extends Component {
 
 		this.props.addItem(this.state);	
 
-		//event.target.reset();
+		event.target.reset();
 	}
 
   render () {
@@ -41,6 +41,7 @@ class Home extends Component {
           <br />
           <button>Submit</button>
         </form>
+				<button onClick={() => this.props.deleteItem()}>Delete</button>
         {items}
       </div>
     );
@@ -55,10 +56,12 @@ const mapStateToProps = state => ({
   items: state.items
 });
 
-const dispatchToProps = (dispatch) => {
-	return {
-		addItem: (item) => dispatch(addItem(item))
-	}
-}
+//LONG WAY
+// const dispatchToProps = (dispatch) => {
+// 	return {
+// 		addItem: (item) => dispatch(addItem(item)),
+// 		deleteItem: () => dispatch(deleteItem(item))
+// 	}
+// }
 
-export default connect(mapStateToProps, dispatchToProps)(Home);
+export default connect(mapStateToProps,  {addItem, deleteItem})(Home);
